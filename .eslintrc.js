@@ -11,6 +11,7 @@ module.exports = {
     "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
     // "no-console": "error" ,
     "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off"
+    // 'indent': [2], // 强制使用一致的缩进
   },
   overrides: [
     {
