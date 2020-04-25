@@ -35,34 +35,20 @@ export default {
     };
   },
   mounted() {
-    console.log("bugger11");
-    window.addEventListener(
-      "popstate",
-      function() {
-        console.log("back");
-      },
-      false
-    );
+    window.addEventListener("popstate", function() {}, false);
   },
   methods: {
     son() {
       this.num++;
     },
     fromSonColorChange(e) {
-      console.log(e);
       let { list } = { ...this };
       list.forEach(item => {
         item.isSelect = false;
         list[e].isSelect = true;
       });
     },
-    handleClick: debounce(
-      function() {
-        console.log(123);
-      },
-      1000,
-      true
-    )
+    handleClick: debounce(function() {}, 1000, true)
   }
 };
 </script>
