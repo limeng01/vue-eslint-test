@@ -35,7 +35,7 @@ export default {
     };
   },
   mounted() {
-    console.log("bugger");
+    console.log("bugger1");
     window.addEventListener(
       "popstate",
       function() {
