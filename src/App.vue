@@ -35,6 +35,7 @@ export default {
     };
   },
   mounted() {
+    console.log(123);
     window.addEventListener("popstate", function() {}, false);
   },
   methods: {
