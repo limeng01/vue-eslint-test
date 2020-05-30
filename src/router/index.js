@@ -30,19 +30,19 @@ const routes = [
     path: "/disCrebtion",
     name: "DisCrebtion",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/disCrebtion"),
+      import(/* webpackChunkName: "disCrebtion" */ "../views/disCrebtion"),
     children: [
       {
         path: "/disCrebtion/pageA",
         name: "PageA",
         component: () =>
-          import(/* webpackChunkName: "about" */ "../views/disCrebtin/pageA")
+          import(/* webpackChunkName: "pageA" */ "../views/disCrebtin/pageA")
       },
       {
         path: "/disCrebtion/pageB",
         name: "PageB",
         component: () =>
-          import(/* webpackChunkName: "about" */ "../views/disCrebtin/pageB")
+          import(/* webpackChunkName: "pageB" */ "../views/disCrebtin/pageB")
       }
     ]
   }

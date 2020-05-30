@@ -3,10 +3,14 @@
     <router-view to="/login"></router-view>
     <a-breadcrumb>
       <a-breadcrumb-item>首页</a-breadcrumb-item>
-      <a-breadcrumb-item><a href="">第二页</a></a-breadcrumb-item>
+      <a-breadcrumb-item>
+        <a href>第二页</a>
+      </a-breadcrumb-item>
     </a-breadcrumb>
     <!-- <Login :num="num" @son="son" /> -->
     <div @click="handleClick">click</div>
+    <div ref="test" class="test"></div>
+    <div @click="getref">火气元素</div>
     <TestEimt @colorChangeToFather="fromSonColorChange" :list="list"></TestEimt>
   </div>
 </template>
@@ -15,6 +19,7 @@
 import TestEimt from "./views/testEimt";
 import utils from "./utils/fn.js";
 const { debounce } = { ...utils };
+
 // import { setTimeout, clearTimeout } from "timers";
 
 export default {
@@ -35,7 +40,6 @@ export default {
     };
   },
   mounted() {
-    console.log(123);
     window.addEventListener("popstate", function() {}, false);
   },
   methods: {
@@ -49,8 +53,18 @@ export default {
         list[e].isSelect = true;
       });
     },
-    handleClick: debounce(function() {}, 1000, true)
+    handleClick: debounce(function() {}, 1000, true),
+    getref() {
+      console.log(this.$refs.test.style);
+      this.$refs.test.style.width = 300 + "px";
+    }
   }
 };
 </script>
-<style lang="less"></style>
+<style lang="less">
+.test {
+  width: 0px;
+  height: 400px;
+  background-color: red;
+}
+</style>
