@@ -1,70 +1,40 @@
+/* eslint-disable */
 <template>
-  <div id="app">
-    <router-view to="/login"></router-view>
-    <a-breadcrumb>
-      <a-breadcrumb-item>首页</a-breadcrumb-item>
-      <a-breadcrumb-item>
-        <a href>第二页</a>
-      </a-breadcrumb-item>
-    </a-breadcrumb>
-    <!-- <Login :num="num" @son="son" /> -->
-    <div @click="handleClick">click</div>
-    <div ref="test" class="test"></div>
-    <div @click="getref">火气元素</div>
-    <TestEimt @colorChangeToFather="fromSonColorChange" :list="list"></TestEimt>
+  <div>
+    <form>
+      姓名：
+      <input type="text" name="username" required />
+      <br />密码：
+      <input type="password" name="password" required />
+      <br />
+      <select name="two" required>
+        <option value>请选择</option>
+        <option value="1">蚂蚁部落一</option>
+        <option value="2">蚂蚁部落二</option>
+        <option value="3">蚂蚁部落三</option>
+      </select>
+
+      <select name="one" required>
+        <option value="请选择">请选择</option>
+        <option value="1">蚂蚁部落一</option>
+        <option value="2">蚂蚁部落二</option>
+        <option value="3">蚂蚁部落三</option>
+      </select>
+      <input type="submit" />
+    </form>
   </div>
 </template>
 <script>
-// import Login from "./views/login";
-import TestEimt from "./views/testEimt";
-import utils from "./utils/fn.js";
-const { debounce } = { ...utils };
-
-// import { setTimeout, clearTimeout } from "timers";
-
 export default {
-  components: {
-    // Login,
-    TestEimt
-  },
   data() {
-    return {
-      name: "test",
-      num: 1,
-      list: [
-        { id: 0, isSelect: true },
-        { id: 1, isSelect: false },
-        { id: 2, isSelect: false },
-        { id: 3, isSelect: false }
-      ]
-    };
+    return {};
   },
-  mounted() {
-    window.addEventListener("popstate", function() {}, false);
-  },
-  methods: {
-    son() {
-      this.num++;
-    },
-    fromSonColorChange(e) {
-      let { list } = { ...this };
-      list.forEach(item => {
-        item.isSelect = false;
-        list[e].isSelect = true;
-      });
-    },
-    handleClick: debounce(function() {}, 1000, true),
-    getref() {
-      console.log(this.$refs.test.style);
-      this.$refs.test.style.width = 300 + "px";
-    }
-  }
+  components: {},
+  watch: {},
+  created() {},
+  mounted() {},
+  methods: {}
 };
 </script>
 <style lang="less">
-.test {
-  width: 0px;
-  height: 400px;
-  background-color: red;
-}
 </style>
