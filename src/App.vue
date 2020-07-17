@@ -13,13 +13,6 @@
         <option value="2">蚂蚁部落二</option>
         <option value="3">蚂蚁部落三</option>
       </select>
-
-      <select name="one" required>
-        <option value="请选择">请选择</option>
-        <option value="1">蚂蚁部落一</option>
-        <option value="2">蚂蚁部落二</option>
-        <option value="3">蚂蚁部落三</option>
-      </select>
       <input type="submit" />
     </form>
   </div>
