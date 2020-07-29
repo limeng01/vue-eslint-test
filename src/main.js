@@ -1,15 +1,20 @@
 import Vue from "vue";
-import { Button, Select, Breadcrumb } from "ant-design-vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import "ant-design-vue/dist/antd.less";
+import antDesignPackage from "./use";
+import infiniteScroll from "vue-infinite-scroll"; // 滚动
 Vue.config.productionTip = false;
-Vue.use(Button);
-Vue.use(Select);
-Vue.use(Breadcrumb);
+
+Vue.use(antDesignPackage);
+Vue.use(infiniteScroll);
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount("#app");
+// Vue.config.errorHandler = function(err, vm, info) {
+//   console.log(err, "???");
+//   console.log(vm);
+//   console.log(info);
+// };

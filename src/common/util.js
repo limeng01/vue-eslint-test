@@ -85,3 +85,77 @@ export const timeFormat = (date) => {
     [hour, minute, second].map(formatNumber).join(":")
   );
 };
+/*
+ * 防抖
+ */
+
+export const debounce = (method, wait, immediate) => {
+  let timeout;
+  return function(...args) {
+    let context = this;
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+    // 立即执行需要两个条件，一是immediate为true，二是timeout未被赋值或被置为null
+    if (immediate) {
+      // 如果定时器不存在，则立即执行，并设置一个定时器，wait毫秒后将定时器置为null
+      // 这样确保立即执行后wait毫秒内不会被再次触发
+      let callNow = !timeout;
+      timeout = setTimeout(() => {
+        timeout = null;
+      }, wait);
+      if (callNow) {
+        method.apply(context, args);
+      }
+    } else {
+      // 如果immediate为false，则函数wait毫秒后执行
+      timeout = setTimeout(() => {
+        // args是一个类数组对象，所以使用fn.apply
+        // 也可写作method.call(context, ...args)
+        method.apply(context, args);
+      }, wait);
+    }
+  };
+};
+/*
+ * 触底加载数据
+ */
+export const reachBottom = (
+  element,
+  callback,
+
+  context,
+  threshold = 50,
+  scrollTopArgu = 0
+) => {
+  if (!(callback instanceof Function)) {
+    throw new Error("callback is not a function");
+  }
+  let destroyed_scroll_top;
+  function eventFn(e) {
+    let { clientHeight, scrollTop, scrollHeight } = e.target;
+    destroyed_scroll_top = scrollTop || 0;
+    // scrollTop 在pc滑动过快导致数据不同步
+
+    if (
+      scrollTop >= scrollTopArgu &&
+      clientHeight + scrollTop + threshold > scrollHeight &&
+      context.times === false
+      // scrollHeight - clientHeight + scrollTop >= threshold
+    ) {
+      console.log("到底了");
+      context.times = true;
+      /*
+       *scrollTopArgu为了记住内部的滚动距离
+       *防止：当页面上滑时 距离小于目标阀值时，也会触发请求
+       */
+      scrollTopArgu = scrollTop;
+      callback();
+    }
+  }
+  element.addEventListener("scroll", debounce(eventFn, 20, true));
+  context.$on("hook:destroyed", () => {
+    sessionStorage.setItem("scrollTop", destroyed_scroll_top);
+    element.removeEventListener("scroll", eventFn);
+  });
+};
