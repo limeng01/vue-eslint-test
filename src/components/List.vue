@@ -1,7 +1,7 @@
 <template>
-  <div class="conti" ref="conti">
+  <div class="conti" ref="conti" id="list">
     <h1 @click="click" ref="item">我是list页面1</h1>
-    <h1>我是list页面2</h1>
+    <h1 @click="handle">我是list页面2</h1>
     <h1>我是list页面3</h1>
     <h1>我是list页面4</h1>
     <h1>我是list页面5</h1>
@@ -13,14 +13,17 @@ export default {
   name: "List",
   data() {
     return {
-      scroll: 0
+      scroll: 0,
     };
   },
   computed: {},
   methods: {
     click() {
       this.$refs.item.style.color = "green";
-    }
+    },
+    handle() {
+      console.log("test");
+    },
   },
   created() {},
   mounted() {
@@ -29,20 +32,20 @@ export default {
       () => {
         this.scroll = this.$refs.conti.scrollTop;
       },
-      false
+      false,
     );
   },
   activated() {
     console.log("我是缓存的组件");
     this.$refs.conti.scrollTo({
       top: this.scroll,
-      left: 0
+      left: 0,
       // behavior: "smooth"
     });
   },
   deactivated() {
     console.log("组件隐藏");
-  }
+  },
 };
 </script>
 <style lang="less">

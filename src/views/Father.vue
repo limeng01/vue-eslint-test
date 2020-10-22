@@ -2,22 +2,42 @@
   <!--  -->
   <div>
     <div>父组件</div>
-    <a-button type="primary">Primary</a-button>
+    <component :is="componentid" :msg="msg"></component>
+    <el-button @click="change">改变组件</el-button>
   </div>
 </template>
->
+
 <script>
-// import With from "../components/with";
+import Cone from "../components/cone";
+import Ctwo from "../components/ctwo";
 export default {
   data() {
-    return {};
+    return {
+      componentid: "Ctwo",
+      msg: "Ctwo",
+    };
   },
   components: {
-    // With,
+    Cone,
+    Ctwo,
   },
 
-  watch: {},
-  mounted() {},
-  methods: {},
+  watch: {
+    componentid(newVal) {
+      this.msg = newVal;
+    },
+  },
+  mounted() {
+    let dom = document.getElementById("mark2");
+    console.log(dom);
+    dom.innerHTML = "我是父组件修改过的";
+  },
+  methods: {
+    change() {
+      this.componentid === "Ctwo"
+        ? (this.componentid = "Cone")
+        : (this.componentid = "Ctwo");
+    },
+  },
 };
 </script>

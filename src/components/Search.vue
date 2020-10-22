@@ -2,7 +2,8 @@
   <div class="hello">
     <input v-model="searchValue" />
     <span @click="serachList.push(searchValue)">搜索</span>
-    <div v-for="(item,index) in serachList" :key="index">{{item}}</div>
+    <div @click="$emit('to-father', searchValue)">添加</div>
+    <div v-for="(item, index) in serachList" :key="index">{{ item }}</div>
   </div>
 </template>
 
@@ -13,12 +14,12 @@ export default {
   data() {
     return {
       searchValue: "",
-      serachList: []
+      serachList: [],
     };
   },
   created() {},
   mounted() {},
-  methods: {}
+  methods: {},
 };
 </script>
 

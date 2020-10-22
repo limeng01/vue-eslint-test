@@ -8,6 +8,7 @@ const components = {
 
 export default {
   install(Vue) {
-    Object.keys(components).forEach((key) => Vue.use(components[key]));
+    Object.keys(components).forEach(key => Vue.use(components[key]));
   },
 };
+
