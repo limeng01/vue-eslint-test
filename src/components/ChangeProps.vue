@@ -1,23 +1,27 @@
 <template>
   <div class="hello">
-    <h1 @click="$emit('changeMsg',msg)">{{msg}}</h1>
+    <h1>{{msg}}</h1>
+    <div @click="changeSmth">退出</div>
   </div>
 </template>
 
 <script>
 export default {
   name: "He",
-
-  created() {
-    console.log("我是hellow页面");
+  props: {
+    msg: {
+      type: String()
+    }
   },
-  mounted() {
-    console.log("我是hellow页面");
-  },
+  created() {},
+  mounted() {},
   data() {
-    return {
-      msg: "我是hello页面"
-    };
+    return {};
+  },
+  methods: {
+    changeSmth() {
+      this.$emit("update:msg", "再见");
+    }
   }
 };
 </script>

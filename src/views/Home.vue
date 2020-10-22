@@ -21,14 +21,15 @@ export default {
     return {
       id: this.$route.params.id,
       obj: {
-        name: "jack"
+        name: "jack",
         // id: ""
-      }
+      },
     };
   },
   mounted() {
     this.$set(this.obj, "id", 2);
   },
+  watch: {},
   methods: {
     handleChangeStyle() {
       addClass(document.querySelector(".test"), "on");
@@ -47,8 +48,8 @@ export default {
     async handleRequest() {
       let data = await test();
       console.log(data);
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="less" scoped>
