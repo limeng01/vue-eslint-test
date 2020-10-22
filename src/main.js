@@ -62,6 +62,8 @@ Vue.directive('blockDom', {
           }
           console.log(targetDomStyle)
           // http://menvscode.com/detail/5d5e3c44df885f4704d85f76
+          // 测试下不同分支问题
+          // 啦啦！dA
         }
       }
     };
