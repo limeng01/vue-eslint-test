@@ -1,4 +1,3 @@
-/* eslint-disable */
 <template>
   <div id="app">
     <div class="container">
@@ -10,8 +9,16 @@
           >{{ item.name }}</span
         >
         <el-Button @click="run">跳</el-Button>
-      </div>
+        <div id="click" @click="handleClick">点击</div>
+        <div @click="navTocustomPage">去自定义指令页面</div>
+        <div @click="navTorili">去日历页面</div>
+        <div @click="navToscroolTest">去滚动页面</div>
 
+        <div class="conti">
+          <div class="half">12</div>
+          <div class="addborder"></div>
+        </div>
+      </div>
       <!-- <base-component-a /> -->
       <keep-alive>
         <router-view v-if="$route.meta.keepalive">
@@ -27,9 +34,13 @@
 <script>
 // import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
 import { mapState, mapMutations } from "vuex";
+import { say } from "@/utils/test.js";
 export default {
   data() {
-    return {};
+    return {
+      age: 13,
+      list: [1, 2, 3],
+    };
   },
   computed: {
     ...mapState("routes", ["routeList"]), // 多模块取值
@@ -37,17 +48,17 @@ export default {
   components: {},
   watch: {},
   created() {
-    // this.$love("我爱你");
-    // this.$letMeSay();
+    let fn = say.bind(this);
+    fn();
   },
   destroyed() {},
   mounted() {
-    console.log(process.env, "全局状态");
+    // console.log(process.env, "全局状态");
     document.documentElement.style.fontSize = `${document.documentElement
-      .clientWidth / 12.8}px`;
+      .clientWidth / 17.92}px`;
     window.addEventListener("resize", () => {
       document.documentElement.style.fontSize = `${document.documentElement
-        .clientWidth / 12.8}px`;
+        .clientWidth / 17.92}px`;
     });
 
     // 监听页面返回
@@ -63,6 +74,11 @@ export default {
 
   methods: {
     ...mapMutations("routes", ["CHANGE_ROUTE", "JIANSHAO_ROUTE", "POP_ROUTE"]),
+    handleClick() {
+      this.$router.push({
+        path: "/animation",
+      });
+    },
     nav(idx) {
       if (idx == this.routeList.length - 1) return;
       this.JIANSHAO_ROUTE(idx + 1);
@@ -80,7 +96,22 @@ export default {
     run() {
       this.CHANGE_ROUTE({ name: "列表页面" });
       this.$router.push({
-        path: "/ViewBindX",
+        path: "/uploadALI",
+      });
+    },
+    navTocustomPage() {
+      this.$router.push({
+        path: "/custom",
+      });
+    },
+    navTorili() {
+      this.$router.push({
+        path: "/rili",
+      });
+    },
+    navToscroolTest() {
+      this.$router.push({
+        path: "/scroolTest",
       });
     },
   },
@@ -88,7 +119,44 @@ export default {
 </script>
 <style lang="less">
 @import url("~@/assets/css/public.less");
-
+#app {
+  // height: 2000px;
+}
+.conti {
+  position: relative;
+  width: 42px;
+  height: 42px;
+}
+.half {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: yellow;
+  margin: 0 auto;
+  line-height: 40px;
+  text-align: center;
+  z-index: 2;
+  position: relative;
+}
+.addborder {
+  position: absolute;
+  width: 26px;
+  height: 42px;
+  border-radius: 0 100px 100px 0px;
+  background-color: red;
+  right: -0.4px;
+  z-index: 1;
+  top: -1px;
+}
+// .half::after {
+//   content: " ";
+//   width: 102%;
+//   height: 102%;
+//   position: absolute;
+//   background-color: red;
+//   border-radius: 50%;
+//   z-index: 1;
+// }
 img[lazy="loading"] {
   opacity: 0; /*初始不透明度为0，图片都看不见*/
   // transition: opacity 1s linear; /*--重点--定义一个关于透明度的transition*/

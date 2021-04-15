@@ -10,10 +10,11 @@
       <div class="outer-item" v-for="item in list" :key="item">
         {{ item }}
       </div>
-      <div class="inner-conti" v-show="showToast" v-blockDom:conti>
+      <div class="inner-conti" v-show="showToast" v-frezzDom:conti>
         {{ str }}
       </div>
     </div>
+    <input type="text" placeholder="请填写名称" value="123" v-inputValue />
   </div>
 </template>
 

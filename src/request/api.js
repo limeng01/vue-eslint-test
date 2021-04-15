@@ -13,3 +13,5 @@ export const getImgList = data =>
     "http://clitest.eduxdesign.com/api_special/search_special_material",
     data,
   );
+  export const getOSStoken = (data, headers) =>
+  Request.get("http://clitest.eduxdesign.com/maxwell/v1.0/oss/token?uid=7aca9fbdef60efe0d2286044363168642d27dbda", data, headers);

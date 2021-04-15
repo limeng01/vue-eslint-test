@@ -10,15 +10,17 @@ const AJAX = axios.create({
 AJAX.interceptors.request.use(
   function(config) {
     // 在发送请求之前做些什么
-    let token;
+    let token =
+      "N2FjYTlmYmRlZjYwZWZlMGQyMjg2MDQ0MzYzMTY4NjQyZDI3ZGJkYSwzMDI0NTU4LDEsemhlbmdqaW5pdSwxNjExMTM3MTAx";
     if (localStorage.token) {
       token = localStorage.token;
       config.headers.token = token;
       config.headers.type = 1;
-      config.headers.webp = 1
+      config.headers.webp = 1;
     } else {
       console.log("没有 token");
     }
+    config.params.uid = "7aca9fbdef60efe0d2286044363168642d27dbda";
 
     return config;
   },

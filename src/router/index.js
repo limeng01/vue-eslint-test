@@ -36,12 +36,26 @@ const routes = [
         /* webpackChunkName: "scrollelement" */ "../views/antdesign_scroll"
       ),
   },
+  // 测试日历js文件
+  {
+    path: "/rili",
+    name: "Rili",
+    component: () =>
+      import(/* webpackChunkName: "scrollelement" */ "../views/日历"),
+  },
   // 测试vuex
   {
     path: "/vuex",
     name: "VuexTest",
     component: () =>
       import(/* webpackChunkName: "scrollelement" */ "../views/vuex.vue"),
+  },
+  // 测试滚动
+  {
+    path: "/scroolTest",
+    name: "scroolTest",
+    component: () =>
+      import(/* webpackChunkName: "scrollelement" */ "../views/测试滚动.vue"),
   },
   // 测试keep-alive组件缓存
   {
@@ -78,7 +92,42 @@ const routes = [
   {
     path: "/ViewBindX",
     name: "ViewBindX",
-    component: () => import(/* webpackChunkName: "fater" */ "../views/viewBindX"),
+    component: () =>
+      import(/* webpackChunkName: "fater" */ "../views/viewBindX"),
+  },
+  // 使用intro.js的使用
+  {
+    path: "/intro",
+    name: "Intro",
+    component: () => import(/* webpackChunkName: "intro" */ "../views/intro"),
+  },
+  // Element Ui - 手风琴
+  {
+    path: "/collapse",
+    name: "collapse",
+    component: () =>
+      import(/* webpackChunkName: "intro" */ "../views/element/Collapse"),
+  },
+  // 阿里云分片上传
+  {
+    path: "/uploadALI",
+    name: "uploadALI",
+    component: () =>
+      import(/* webpackChunkName: "intro" */ "../views/uploadALI"),
+  },
+  // 测试加入购物车动画
+  {
+    path: "/animation",
+    name: "animation",
+    component: () =>
+      import(/* webpackChunkName: "intro" */ "../views/animation"),
+  },
+  // 测试自定义指令使用
+  {
+    path: "/custom",
+    name: "custom",
+    component: () =>
+      import(/* webpackChunkName: "intro" */ "../views/自定义指令"),
   },
   // 父组件，用来承接子组件测试vue高级技巧
   {
@@ -98,13 +147,13 @@ const routes = [
       import(/* webpackChunkName: "disCrebtion" */ "../views/disCrebtion"),
     children: [
       {
-        path: "/pageA",
+        path: "pageA",
         name: "PageA",
         component: () =>
           import(/* webpackChunkName: "pageA" */ "../views/disCrebtin/pageA"),
       },
       {
-        path: "/pageB",
+        path: "pageB",
         name: "PageB",
         meta: {
           showLeftSide: true,
@@ -114,6 +163,7 @@ const routes = [
       },
     ],
   },
+
   //
   {
     path: "/pa",
@@ -156,6 +206,14 @@ VueRouter.prototype.push = function push(location) {
 };
 const router = new VueRouter({
   mode: "history",
+  scrollBehavior(to, from, savedPosition) {
+    // return 期望滚动到哪个的位置
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { x: 0, y: 0 };
+    }
+  },
   base: process.env.BASE_URL,
   routes,
 });
