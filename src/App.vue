@@ -8,17 +8,9 @@
           @click="nav(index)"
           >{{ item.name }}</span
         >
-        <el-Button @click="run">跳</el-Button>
-        <div id="click" @click="handleClick">点击</div>
-        <div @click="navTocustomPage">去自定义指令页面</div>
-        <div @click="navTorili">去日历页面</div>
-        <div @click="navToscroolTest">去滚动页面</div>
-
-        <div class="conti">
-          <div class="half">12</div>
-          <div class="addborder"></div>
-        </div>
+        <button @click="run">run</button>
       </div>
+
       <!-- <base-component-a /> -->
       <keep-alive>
         <router-view v-if="$route.meta.keepalive">
@@ -34,18 +26,21 @@
 <script>
 // import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
 import { mapState, mapMutations } from "vuex";
+import ListSHow from "./views/listShow";
 import { say } from "@/utils/test.js";
+import Son from "./views/父组件给我传值";
+import Vue from "vue";
 export default {
   data() {
     return {
       age: 13,
-      list: [1, 2, 3],
+      message: "你好",
     };
   },
   computed: {
     ...mapState("routes", ["routeList"]), // 多模块取值
   },
-  components: {},
+  components: { Son, ListSHow },
   watch: {},
   created() {
     let fn = say.bind(this);
@@ -70,14 +65,22 @@ export default {
       },
       false,
     );
+    // 事件监听
+    function Subject() {
+      this.observerList = [];
+      this.add = cb => this.observerList.push(cb);
+      this.notify = () => this.observerList.forEach(item => item());
+    }
+    Vue.prototype.subs = new Subject();
+    setTimeout(() => {
+      Vue.prototype.subs.notify();
+    }, 5000);
   },
 
   methods: {
     ...mapMutations("routes", ["CHANGE_ROUTE", "JIANSHAO_ROUTE", "POP_ROUTE"]),
-    handleClick() {
-      this.$router.push({
-        path: "/animation",
-      });
+    mountedHooks() {
+      console.log("我是父组件的mountedHook", this);
     },
     nav(idx) {
       if (idx == this.routeList.length - 1) return;
@@ -94,24 +97,8 @@ export default {
       }
     },
     run() {
-      this.CHANGE_ROUTE({ name: "列表页面" });
       this.$router.push({
-        path: "/uploadALI",
-      });
-    },
-    navTocustomPage() {
-      this.$router.push({
-        path: "/custom",
-      });
-    },
-    navTorili() {
-      this.$router.push({
-        path: "/rili",
-      });
-    },
-    navToscroolTest() {
-      this.$router.push({
-        path: "/scroolTest",
+        path: "/magnifyingGlass",
       });
     },
   },
@@ -119,6 +106,7 @@ export default {
 </script>
 <style lang="less">
 @import url("~@/assets/css/public.less");
+
 #app {
   // height: 2000px;
 }

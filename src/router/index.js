@@ -7,6 +7,12 @@ Vue.use(VueRouter);
 
 const routes = [
   {
+    path: "/",
+    name: "LandingPage",
+    component: () =>
+      import(/* webpackChunkName: "scroll" */ "../views/landingPage"),
+  },
+  {
     path: "/login",
     name: "Login",
     component: Login,
@@ -27,9 +33,32 @@ const routes = [
     name: "Scroll",
     component: () => import(/* webpackChunkName: "scroll" */ "../views/scroll"),
   },
+  // 自己写的滚动加载数据
+  {
+    path: "/magnifyingGlass",
+    name: "MagnifyingGlass",
+    component: () => import(/* webpackChunkName: "scroll" */ "../views/放大镜"),
+  },
   // 用框架的滚动加载数据
   {
     path: "/scrollelement",
+    name: "Scrollelement",
+    component: () =>
+      import(
+        /* webpackChunkName: "scrollelement" */ "../views/antdesign_scroll"
+      ),
+  },
+  // 测试$bus事件总线
+  {
+    path: "/bus",
+    name: "Bus",
+    component: () =>
+      import(
+        /* webpackChunkName: "scrollelement" */ "../views/bus事件总线测试"
+      ),
+  },
+  {
+    path: "/bus",
     name: "Scrollelement",
     component: () =>
       import(
@@ -42,6 +71,13 @@ const routes = [
     name: "Rili",
     component: () =>
       import(/* webpackChunkName: "scrollelement" */ "../views/日历"),
+  },
+  // swiper
+  {
+    path: "/swiper",
+    name: "Swiper",
+    component: () =>
+      import(/* webpackChunkName: "scrollelement" */ "../views/swiper.vue"),
   },
   // 测试vuex
   {
@@ -56,6 +92,40 @@ const routes = [
     name: "scroolTest",
     component: () =>
       import(/* webpackChunkName: "scrollelement" */ "../views/测试滚动.vue"),
+  },
+  // ElementUI测试，这里存放着Element所有的组件测试
+  {
+    path: "/elementUi",
+    name: "ElementUi",
+    component: () =>
+      import(
+        /* webpackChunkName: "scrollelement" */ "../views/elementUi测试.vue"
+      ),
+  },
+  // 父组件给子组件传值测试
+  {
+    path: "/toSon",
+    name: "toSon",
+    component: () =>
+      import(
+        /* webpackChunkName: "scrollelement" */ "../views/父组件给我传值.vue"
+      ),
+  },
+  // vue的extends测试
+  {
+    path: "/extend",
+    name: "extend",
+    component: () =>
+      import(
+        /* webpackChunkName: "scrollelement" */ "../views/vue的extend.vue"
+      ),
+  },
+  // table 表格展示
+  {
+    path: "/table",
+    name: "Table",
+    component: () =>
+      import(/* webpackChunkName: "scrollelement" */ "../views/table.vue"),
   },
   // 测试keep-alive组件缓存
   {

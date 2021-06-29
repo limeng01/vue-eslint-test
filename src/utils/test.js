@@ -1,3 +1,3 @@
 export const say = function() {
-  console.log(this);
+  // console.log(this);
 };
