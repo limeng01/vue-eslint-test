@@ -93,6 +93,15 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "scrollelement" */ "../views/测试滚动.vue"),
   },
+  // 打印pdf
+  {
+    path: "/PDF",
+    name: "PDF",
+    component: () =>
+      import(
+        /* webpackChunkName: "scrollelement" */ "../views/打印PDF/index.vue"
+      ),
+  },
   // ElementUI测试，这里存放着Element所有的组件测试
   {
     path: "/elementUi",

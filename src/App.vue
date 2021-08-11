@@ -1,16 +1,16 @@
 <template>
   <div id="app">
     <div class="container">
-      <div v-show="$route.path === '/' || $route.meta.showLeftSide">
+      <!-- <div v-show="$route.path === '/' || $route.meta.showLeftSide">
         <span
           v-for="(item, index) in routeList"
           :key="index"
           @click="nav(index)"
           >{{ item.name }}</span
         >
-        <button @click="run">run</button>
-      </div>
-
+        <button @click="run" id="butttt">run</button>
+      </div> -->
+      <Vif />
       <!-- <base-component-a /> -->
       <keep-alive>
         <router-view v-if="$route.meta.keepalive">
@@ -29,6 +29,8 @@ import { mapState, mapMutations } from "vuex";
 import ListSHow from "./views/listShow";
 import { say } from "@/utils/test.js";
 import Son from "./views/父组件给我传值";
+import Vif from "./views/vue属性/v-if.vue";
+
 import Vue from "vue";
 export default {
   data() {
@@ -40,7 +42,7 @@ export default {
   computed: {
     ...mapState("routes", ["routeList"]), // 多模块取值
   },
-  components: { Son, ListSHow },
+  components: { Son, ListSHow, Vif },
   watch: {},
   created() {
     let fn = say.bind(this);
@@ -98,7 +100,7 @@ export default {
     },
     run() {
       this.$router.push({
-        path: "/magnifyingGlass",
+        path: "/PDF",
       });
     },
   },
