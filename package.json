@@ -12,11 +12,20 @@
   "dependencies": {
     "ali-oss": "^6.10.0",
     "ant-design-vue": "^1.5.0",
+    "axios": "^0.21.1",
     "babel-plugin-import": "^1.13.0",
     "core-js": "^3.6.4",
     "element-ui": "^2.13.2",
+    "freeze-dom": "^0.1.1",
+    "html2canvas": "^1.1.4",
+    "intro.js": "^3.1.0",
+    "jspdf": "^2.3.1",
+    "swiper": "^6.7.0",
     "vue": "^2.6.11",
+    "vue-awesome-swiper": "^4.1.1",
+    "vue-drag-resize": "^1.5.4",
     "vue-infinite-scroll": "^2.0.2",
+    "vue-photo-zoom-pro": "^1.4.3",
     "vue-router": "^3.1.5",
     "vuex": "^3.1.2"
   },
@@ -27,6 +36,7 @@
     "@vue/cli-service": "^4.2.0",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/test-utils": "1.0.0-beta.31",
+    "ali-oss": "^6.13.1",
     "babel-eslint": "^10.0.3",
     "babel-plugin-component": "^1.1.1",
     "eslint": "^6.7.2",
@@ -43,7 +53,7 @@
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
-    "*.{js,jsx,vue}": [
+    "*.{jsx}": [
       "vue-cli-service lint",
       "git add"
     ]

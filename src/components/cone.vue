@@ -14,13 +14,16 @@ export default {
   props: {
     msg: {
       type: String,
+      default: "一个帅哥", // 当调用该子组件当父组件不传递msg值的时候，子组件会取默认值
     },
   },
   components: {},
   computed: {},
   methods: {},
   created() {},
-  mounted() {},
+  mounted() {
+    console.log(this.msg, "????");
+  },
 };
 </script>
 <style lang="less"></style>
