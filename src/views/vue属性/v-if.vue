@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div v-if="show" id="first">{{ new Date().getTime() }}---、</div>
+    <div v-if="show" id="first">{{ new Date().getTime() }}---</div>
     <div id="second">{{ new Date().getTime() }}---</div>
-
+    <div>{{ cc }}</div>
     <button @click="click">点击</button>
   </div>
 </template>

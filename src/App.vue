@@ -10,7 +10,9 @@
         >
         <button @click="run" id="butttt">run</button>
       </div> -->
-      <Vif />
+      <!-- <Vif /> -->
+      <!-- <Vmodel /> -->
+      <Inject />
       <!-- <base-component-a /> -->
       <keep-alive>
         <router-view v-if="$route.meta.keepalive">
@@ -30,6 +32,8 @@ import ListSHow from "./views/listShow";
 import { say } from "@/utils/test.js";
 import Son from "./views/父组件给我传值";
 import Vif from "./views/vue属性/v-if.vue";
+import Vmodel from "./views/vue属性/vue响应式.vue";
+import Inject from "./views/vue属性/inject.vue";
 
 import Vue from "vue";
 export default {
@@ -42,11 +46,16 @@ export default {
   computed: {
     ...mapState("routes", ["routeList"]), // 多模块取值
   },
-  components: { Son, ListSHow, Vif },
+  components: { Son, ListSHow, Vif, Vmodel, Inject },
   watch: {},
   created() {
     let fn = say.bind(this);
     fn();
+  },
+  provide: function() {
+    return {
+      getMap: "我是爷爷",
+    };
   },
   destroyed() {},
   mounted() {
